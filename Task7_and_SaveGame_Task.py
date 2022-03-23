@@ -27,8 +27,15 @@ class Breakthrough():
 
     def Test(self):
         self.__SetupGame()
-        print(self.__CurrentLock.GetLockSolvedStatus())
+        print(self.__Score)
         print(self.__CurrentLock.GetLockString())
+        print(self.__CurrentLock.GetLockSolvedStatus())
+        print(self.__Hand.GetCardList())
+        print(self.__Sequence.GetCardList())
+        print(self.__Discard.GetCardList())
+        print(self.__Deck.GetCardList())
+
+
 
     def PlayGame(self):
         if len(self.__Locks) > 0:
@@ -466,6 +473,18 @@ class CardCollection():
     def __init__(self, N):
         self._Name = N
         self._Cards = []
+
+    def GetCardList(self):
+        cardlist = []
+        for i in self._Cards:
+            card = []
+            card.append(f"{i.GetDescription()} ")
+            card.append(str(i.GetCardNumber()))
+            card = "".join(card)
+            cardlist.append(card)
+        cardlist = ",".join(cardlist)
+        return cardlist
+
 
     def GetName(self):
         return self._Name
